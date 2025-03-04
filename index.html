@@ -13,5 +13,28 @@
     <div class="cards-container">
     </div>
     <script src="script.js"></script>
+    <div class="form-container">
+        <button id="btn">New Book</button>
+        <button id="btn-back">Back</button>
+        <form action="#" method="post">
+            <div class="input">
+                <label for="title">Title</label>
+                <input type="text" name="title" id="title">
+            </div>
+            <div class="input">
+                <label for="author">Author</label>
+                <input type="text" name="author" id="author">
+            </div>
+            <div class="input">
+                <label for="pages">Pages</label>
+                <input type="number" name="pages" id="pages" min="0">
+            </div>
+            <div>
+                <label for="read">Read</label>
+                <input type="checkbox" name="read" id="read">
+            </div>
+            <button type="submit" class="btn-form">Add</button>
+        </form>
+    </div>
 </body>
 </html>
