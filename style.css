@@ -5,10 +5,15 @@
     font-family: "Roboto", sans-serif;
 }
 
-.container {
+body{
+    background-color: #000B58;
+}
+    
+.cards-container {
     width: 60%;
     margin: 20px auto;
-    background-color: #3b7861;
+    background-color: #003161;
+    border-radius: 15px;
     padding: 20px;
     display: grid;
     grid-template-columns: repeat(auto-fit, 250px);
@@ -16,13 +21,13 @@
 }
 
 .cards {
-    background-color: hsl(60, 56%, 85%);
+    background-color: #006A67;
     width: 200px;
     height: 200px;
-    padding: 5px;
+    padding: 20px;
     border-radius: 15px;
     text-align: center;
-    color: #9a9a9a;
+    color: white;
     display: flex;
     flex-direction: column;
     justify-content: space-between;

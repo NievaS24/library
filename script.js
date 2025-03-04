@@ -1,5 +1,5 @@
 const myLibrary = [];
-const container = document.querySelector(".container");
+const cardsContainer = document.querySelector(".cards-container");
 function Book(title, author, pages, read) {
   this.title = title;
   this.author = author;
@@ -19,13 +19,11 @@ function displayLibrary(library) {
         card.setAttribute("class", "cards")
         let h2 = document.createElement("h2");
         h2.textContent = book.title;
-        h2.style.color = "#666";
         let pAuthor = document.createElement("p");
         pAuthor.textContent = "Author: " + book.author;
         let pPages = document.createElement("p");
         pPages.textContent = "Pages: " + book.pages;
         let pRead = document.createElement("p");
-        pRead.style.color = "#f0f0f0"
         pRead.style["border-radius"] = "15px";
         if (book.read === true) {
             pRead.textContent = "Already read";
@@ -38,7 +36,7 @@ function displayLibrary(library) {
         card.appendChild(pAuthor);
         card.appendChild(pPages);
         card.appendChild(pRead);
-        container.appendChild(card);
+        cardsContainer.appendChild(card);
     });
 }
 
