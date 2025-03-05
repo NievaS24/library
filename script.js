@@ -22,17 +22,28 @@ window.addEventListener('load', ()=>{
     this.pages = pages;
     this.read = read;
     }
+    // Se creo una funcion en el prototipo de Book asi todos los libros creados puedan acceder a esta funcion -- Function created in Book's prototype so that al books created can access this function.
+    Book.prototype.toggle = function () {
+        if(this.read == true) {
+            this.read = false;
+        }else{
+            this.read = true;
+        }
+        displayLibrary(myLibrary);
+    }
     // Funcion para añadir y mostrar libros -- Function to add y display books.
     function addBookToLibrary(title, author, pages, read) {
-    let book = new Book(title, author, pages, read);
-    myLibrary.push(book);
+        let book = new Book(title, author, pages, read);
+        myLibrary.push(book);
     }
 
     function displayLibrary(library) {
+        // Limpia el container para que no se repitan los libros cada vez que se ejecute la funcion -- Clear the container so books doesn't repeat.
         cardsContainer.innerHTML = "";
-        library.forEach((book) => {
+        library.forEach((book, index) => {
             let card = document.createElement("div");
-            card.setAttribute("class", "cards")
+            card.setAttribute("class", "cards");
+            card.setAttribute("id", "card-" + index);
             let h2 = document.createElement("h2");
             h2.textContent = book.title;
             let pAuthor = document.createElement("p");
@@ -48,6 +59,18 @@ window.addEventListener('load', ()=>{
                 pRead.textContent = "To read";
                 pRead.style["background-color"] = "#ec5353";
             }
+            pRead.addEventListener("click", () => {
+                book.toggle();
+            });
+            const removeBtn = document.createElement("button");
+            removeBtn.setAttribute("class", "remove-button");
+            removeBtn.setAttribute("data-index", index);
+            removeBtn.textContent = "-";
+            removeBtn.addEventListener("click", () => {
+                myLibrary.splice(index, 1);
+                displayLibrary(myLibrary);
+            });
+            card.appendChild(removeBtn);
             card.appendChild(h2);
             card.appendChild(pAuthor);
             card.appendChild(pPages);
@@ -57,8 +80,8 @@ window.addEventListener('load', ()=>{
     }
 
     // Ejemplos creados para pruebas -- Examples created for testing.
-    myLibrary[0] = {title: "Habitos Atomicos", author: "James Clear" , pages: 448, read: true};
-    myLibrary[1] = {title: "Harry Potter y la piedra filosofal", author: "J.K. Rowling" , pages: 256, read: false};
+    myLibrary[0] = new Book("Habitos Atomicos", "James Clear", 448, true);
+    myLibrary[1] = new Book("Harry Potter y la piedra filosofal", "J.K. Rowling", 256, false);
     displayLibrary(myLibrary);
     
     
@@ -80,7 +103,7 @@ window.addEventListener('load', ()=>{
     submitBtn.addEventListener("click", (e) => {
         e.preventDefault();
         message.textContent = "";
-        if(formTitle.value != "" || formAuthor.value != "" || formPages.value != "") {
+        if(formTitle.value != "" && formAuthor.value != "" && formPages.value != "") {
             form.style.display = "none";
             btnBack.style.display = "none"
             if(formRead.checked) {
