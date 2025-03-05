@@ -52,6 +52,7 @@ window.addEventListener('load', ()=>{
             pPages.textContent = "Pages: " + book.pages;
             let pRead = document.createElement("p");
             pRead.style["border-radius"] = "15px";
+            pRead.style["user-select"] = "none";
             if (book.read === true) {
                 pRead.textContent = "Already read";
                 pRead.style["background-color"] = "#7bb074";
